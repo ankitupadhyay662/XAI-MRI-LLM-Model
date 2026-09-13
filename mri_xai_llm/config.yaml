@@ -1,0 +1,42 @@
+# Runtime overrides for mri_xai_llm/config/config.py
+# Edit this file to swap models, thresholds, or preprocessing behavior
+# without touching source code.
+
+model:
+  vision_encoder: "microsoft/rad-dino"
+  vision_encoder_fallback: "vit_base_patch16_224"
+  segmentation_model: "monai_unet"
+  language_model: "Qwen/Qwen2.5-1.5B-Instruct"
+  language_model_fallback: "google/flan-t5-base"
+  projection_hidden_dim: 1024
+  image_size: 224
+  max_new_tokens: 1024
+  use_4bit: true
+  use_lora: true
+  lora_r: 8
+  lora_alpha: 16
+  lora_dropout: 0.05
+
+# Confidence below which a finding is relabeled "Uncertain finding — requires
+# expert review". NOT a clinically validated threshold.
+min_confidence: 0.60
+
+preprocessing:
+  normalization_method: "percentile"   # minmax | zscore | percentile
+  target_spacing: [1.0, 1.0, 1.0]
+  num_slices: 5
+  slice_axis: 2                        # 0=sagittal, 1=coronal, 2=axial
+
+xai:
+  gradcam_alpha: 0.4
+  occlusion_patch_size: 16
+  occlusion_stride: 8
+  integrated_gradients_steps: 50
+
+memory:
+  mixed_precision: true
+  gradient_checkpointing: true
+  batch_size_auto_detect: true
+
+reproducibility:
+  seed: 42
