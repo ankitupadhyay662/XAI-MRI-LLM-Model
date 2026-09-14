@@ -22,7 +22,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from mri_xai_llm.xai.gradcam import overlay_heatmap
+from xai.gradcam import overlay_heatmap
 
 logger = logging.getLogger(__name__)
 

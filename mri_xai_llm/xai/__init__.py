@@ -6,17 +6,17 @@ should read as "indicates the image region that contributed most strongly to
 the model's prediction," never "proves."
 """
 
-from mri_xai_llm.xai.gradcam import GradCAM, overlay_heatmap
-from mri_xai_llm.xai.integrated_gradients import (
+from xai.gradcam import GradCAM, overlay_heatmap
+from xai.integrated_gradients import (
     compute_integrated_gradients,
     visualize_attributions,
 )
-from mri_xai_llm.xai.attention import (
+from xai.attention import (
     extract_attention_maps,
     attention_rollout,
     visualize_attention,
 )
-from mri_xai_llm.xai.occlusion import (
+from xai.occlusion import (
     occlusion_sensitivity,
     deletion_insertion_curve,
 )

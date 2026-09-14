@@ -15,7 +15,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from mri_xai_llm.config.config import detect_device
+from config.config import detect_device
 
 logger = logging.getLogger(__name__)
 

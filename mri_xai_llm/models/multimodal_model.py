@@ -15,8 +15,8 @@ from typing import Any
 import torch
 import torch.nn as nn
 
-from mri_xai_llm.config.config import FINDING_TAXONOMY, MODEL_CONFIG
-from mri_xai_llm.models.vision_encoder import MRIVisionEncoder
+from config.config import FINDING_TAXONOMY, MODEL_CONFIG
+from models.vision_encoder import MRIVisionEncoder
 
 logger = logging.getLogger(__name__)
 

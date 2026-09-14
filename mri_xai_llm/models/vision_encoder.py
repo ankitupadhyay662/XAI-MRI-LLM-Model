@@ -13,7 +13,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-from mri_xai_llm.config.config import MODEL_CONFIG, detect_device
+from config.config import MODEL_CONFIG, detect_device
 
 logger = logging.getLogger(__name__)
 

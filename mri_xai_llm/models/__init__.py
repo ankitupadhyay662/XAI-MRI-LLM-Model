@@ -20,9 +20,9 @@ from typing import Any
 import torch
 import torch.nn as nn
 
-from mri_xai_llm.config.config import MODEL_CONFIG, detect_device
-from mri_xai_llm.models.multimodal_model import MRIMultimodalModel
-from mri_xai_llm.models.vision_encoder import MRIVisionEncoder
+from config.config import MODEL_CONFIG, detect_device
+from models.multimodal_model import MRIMultimodalModel
+from models.vision_encoder import MRIVisionEncoder
 
 logger = logging.getLogger(__name__)
 

@@ -9,8 +9,8 @@ surfaced, but flagged as uncertain so a human reviewer can triage them.
 """
 from __future__ import annotations
 
-from mri_xai_llm.config.config import MIN_CONFIDENCE
-from mri_xai_llm.reporting.schemas import Finding
+from config.config import MIN_CONFIDENCE
+from reporting.schemas import Finding
 
 _UNCERTAIN_NOTE = "Uncertain finding — requires expert review"
 _XAI_MISMATCH_NOTE = "location not corroborated by XAI attribution; treat with caution."

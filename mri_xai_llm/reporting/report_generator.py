@@ -15,8 +15,8 @@ import logging
 import re
 from typing import Callable, Optional
 
-from mri_xai_llm.config.config import DISCLAIMER, MIN_CONFIDENCE  # noqa: F401 - MIN_CONFIDENCE kept for callers that need a shared default
-from mri_xai_llm.reporting.schemas import (
+from config.config import DISCLAIMER, MIN_CONFIDENCE  # noqa: F401 - MIN_CONFIDENCE kept for callers that need a shared default
+from reporting.schemas import (
     Finding,
     ImageQuality,
     MRIReport,

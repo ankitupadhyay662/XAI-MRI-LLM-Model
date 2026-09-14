@@ -26,7 +26,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 
-from mri_xai_llm.xai.gradcam import _extract_logits
+from xai.gradcam import _extract_logits
 
 
 def _target_score(model: nn.Module, batch: torch.Tensor, target_class_idx: int) -> torch.Tensor:

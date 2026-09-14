@@ -18,7 +18,7 @@ import torch
 import torch.nn as nn
 from captum.attr import IntegratedGradients
 
-from mri_xai_llm.xai.gradcam import _extract_logits, overlay_heatmap
+from xai.gradcam import _extract_logits, overlay_heatmap
 
 
 class _LogitExtractorWrapper(nn.Module):

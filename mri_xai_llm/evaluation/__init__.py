@@ -1,10 +1,10 @@
 """Evaluation metrics: classification, segmentation/localization, and report text similarity."""
-from mri_xai_llm.evaluation.classification import (
+from evaluation.classification import (
     compute_classification_metrics,
     finding_level_metrics,
 )
-from mri_xai_llm.evaluation.report_metrics import TEXT_METRIC_CAVEAT, compute_text_metrics
-from mri_xai_llm.evaluation.segmentation import (
+from evaluation.report_metrics import TEXT_METRIC_CAVEAT, compute_text_metrics
+from evaluation.segmentation import (
     dice_coefficient,
     hausdorff_distance,
     iou_score,
