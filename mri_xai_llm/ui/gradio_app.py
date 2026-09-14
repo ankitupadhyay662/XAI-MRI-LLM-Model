@@ -176,7 +176,7 @@ def build_interface() -> "gr.Blocks":
         )
 
         gr.Markdown("## Generated Report")
-        report_text = gr.Textbox(label="Report", lines=20, max_lines=40, show_copy_button=True)
+        report_text = gr.Textbox(label="Report", lines=20, max_lines=40)
         with gr.Row():
             txt_download = gr.File(label="Download report (.txt)")
             json_download = gr.File(label="Download report (.json)")
