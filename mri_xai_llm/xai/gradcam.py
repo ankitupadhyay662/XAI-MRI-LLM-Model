@@ -135,11 +135,41 @@ class GradCAM:
                 "that target_layer participates in the forward/backward graph."
             )
 
-        activations = self._activations  # [B, C, H, W]
-        gradients = self._gradients  # [B, C, H, W]
+        activations = self._activations
+        gradients = self._gradients
 
-        weights = gradients.mean(dim=(2, 3), keepdim=True)  # [B, C, 1, 1]
-        cam = torch.relu((weights * activations).sum(dim=1))  # [B, H, W]
+        if activations.dim() == 4:
+            # Conv-style target layer: [B, C, H, W].
+            weights = gradients.mean(dim=(2, 3), keepdim=True)  # [B, C, 1, 1]
+            cam = torch.relu((weights * activations).sum(dim=1))  # [B, H, W]
+        elif activations.dim() == 3:
+            # Transformer block target layer: [B, N_tokens, D] (ViT-style, CLS
+            # token first). Drop the CLS token, treat D as the channel dim and
+            # each remaining token as a spatial location, then fold the patch
+            # tokens back into a square grid -- same convention used by
+            # MRIVisionEncoder to build its "spatial" feature map.
+            n_tokens = activations.shape[1]
+            has_cls = n_tokens > 1 and int(round((n_tokens - 1) ** 0.5)) ** 2 == n_tokens - 1
+            patch_acts = activations[:, 1:, :] if has_cls else activations
+            patch_grads = gradients[:, 1:, :] if has_cls else gradients
+
+            weights = patch_grads.mean(dim=1, keepdim=True)  # [B, 1, D] channel importance
+            cam_tokens = torch.relu((weights * patch_acts).sum(dim=-1))  # [B, N_patches]
+
+            n_patches = cam_tokens.shape[1]
+            side = int(round(n_patches ** 0.5))
+            if side * side != n_patches:
+                raise RuntimeError(
+                    f"Grad-CAM target layer produced {n_patches} patch tokens, which is not a "
+                    "perfect square -- cannot fold into a spatial grid."
+                )
+            cam = cam_tokens.reshape(cam_tokens.shape[0], side, side)
+        else:
+            raise RuntimeError(
+                f"Grad-CAM target layer activations have unsupported shape {tuple(activations.shape)} "
+                "(expected 4D [B,C,H,W] conv features or 3D [B,N,D] transformer tokens)."
+            )
+
         cam = cam[0].cpu().numpy().astype(np.float32)
 
         cam_min, cam_max = cam.min(), cam.max()
