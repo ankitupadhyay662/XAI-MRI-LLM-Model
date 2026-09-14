@@ -111,6 +111,11 @@ class GradCAM:
         input_tensor = input_tensor.to(device)
         if input_tensor.dim() == 3:
             input_tensor = input_tensor.unsqueeze(0)
+        # The vision encoder is frozen (requires_grad=False on its params), but
+        # gradients can still flow back through frozen weights as long as some
+        # upstream tensor requires grad. Root the graph at the input so the
+        # backward hook below fires regardless of which layers are frozen.
+        input_tensor = input_tensor.clone().detach().requires_grad_(True)
 
         self._activations = None
         self._gradients = None
