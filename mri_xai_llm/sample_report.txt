@@ -1,0 +1,71 @@
+MRI ANALYSIS REPORT
+====================
+
+Examination:
+MRI brain
+
+Sequences:
+FLAIR, T2
+
+TECHNIQUE:
+Multi-sequence MRI volume preprocessed with orientation normalization,
+percentile intensity normalization, and representative axial slice
+selection. Analyzed using a medical vision encoder and finding-detection
+head; explainability generated via Grad-CAM and occlusion sensitivity.
+
+FINDINGS:
+1. Brain/Anatomical region:
+   Mild signal abnormality in the left periventricular white matter;
+   remaining visualized parenchyma appears within expected limits for the
+   analyzed slices.
+
+2. Lesions:
+   Number: 1 (possible, low confidence)
+   Approximate location: Right frontal lobe
+   Approximate dimensions: Not reliably measurable from available slices
+   Signal characteristics: Subtle signal irregularity, low model confidence
+
+3. Ventricular system:
+   No significant ventricular enlargement identified in the analyzed slices.
+
+4. Midline structures:
+   No midline shift identified.
+
+5. Extra-axial spaces:
+   No extra-axial collection identified in the analyzed slices.
+
+6. Other structures:
+   No specific findings reported in this category.
+
+IMPRESSION:
+1. Mild left periventricular white matter signal abnormality, non-specific.
+2. Possible right frontal signal irregularity of uncertain significance —
+   low model confidence, requires expert review.
+3. No midline shift or hydrocephalus identified in the analyzed slices.
+
+DIFFERENTIAL CONSIDERATIONS:
+- Chronic small vessel ischemic change (non-specific white matter finding)
+- Demyelinating process (differential only; not established by this analysis)
+
+CONFIDENCE / UNCERTAINTY:
+Model confidence scores are heuristic, model-derived values and are NOT
+clinically calibrated probabilities. The right frontal finding fell below
+the configured confidence threshold (0.60) and is explicitly flagged as
+uncertain, requiring expert review before any further consideration.
+
+XAI EXPLANATION:
+Grad-CAM attribution for the white matter finding was concentrated in the
+left periventricular region. Occlusion sensitivity for the possible right
+frontal finding showed a measurable score drop when that region was
+occluded. These visualizations indicate which image regions contributed
+most strongly to the model's predictions; they do not prove the presence
+of pathology.
+
+RECOMMENDATION:
+Radiologist/physician review required. This report is a research/
+educational output and must not be used for clinical decision-making
+without expert validation.
+
+------------------------------------------------------------------
+Research/educational output — not a medical diagnosis. Results must be
+reviewed and validated by a qualified radiologist/physician.

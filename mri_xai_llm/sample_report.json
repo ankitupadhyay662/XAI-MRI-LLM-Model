@@ -1,0 +1,55 @@
+{
+  "study": {
+    "modality": "MRI",
+    "body_region": "brain",
+    "sequences": ["FLAIR", "T2"]
+  },
+  "image_quality": {
+    "quality": "acceptable",
+    "score": 0.84,
+    "limitations": ["Mild motion blur detected in 2 of 24 slices (model-derived estimate, not clinically validated)."]
+  },
+  "findings": [
+    {
+      "finding": "White matter abnormality",
+      "location": "Left periventricular white matter",
+      "severity": "mild",
+      "model_score": 0.78,
+      "uncertainty": "",
+      "evidence": "Focal hyperintense signal on FLAIR sequence concentrated near the left lateral ventricle."
+    },
+    {
+      "finding": "Mass/Lesion",
+      "location": "Right frontal lobe",
+      "severity": "unknown",
+      "model_score": 0.52,
+      "uncertainty": "Uncertain finding — requires expert review (model score below configured threshold of 0.60).",
+      "evidence": "Subtle signal irregularity observed; low model confidence."
+    }
+  ],
+  "differential_considerations": [
+    "Chronic small vessel ischemic change (non-specific white matter finding)",
+    "Demyelinating process (differential only; not established by this analysis)"
+  ],
+  "impression": [
+    "Mild left periventricular white matter signal abnormality, non-specific.",
+    "Possible right frontal signal irregularity of uncertain significance — low model confidence, requires expert review.",
+    "No midline shift or hydrocephalus identified in the analyzed slices."
+  ],
+  "xai": [
+    {
+      "finding": "White matter abnormality",
+      "method": "Grad-CAM",
+      "important_regions": ["Left periventricular white matter"],
+      "explanation": "The model's activation was concentrated in the left periventricular region, indicating this area contributed most strongly to the finding score. This does not prove pathology; it reflects model attribution only."
+    },
+    {
+      "finding": "Mass/Lesion",
+      "method": "Occlusion",
+      "important_regions": ["Right frontal lobe"],
+      "explanation": "Occluding the right frontal region produced a measurable drop in the model's predicted score for this finding, indicating the region's contribution to the (low-confidence) prediction."
+    }
+  ],
+  "recommendation": "This is a research/educational output. Radiologist/physician review is required before any clinical interpretation or action.",
+  "medical_disclaimer": "Research output only; requires review by a qualified radiologist."
+}
